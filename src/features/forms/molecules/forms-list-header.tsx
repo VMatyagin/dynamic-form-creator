@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button } from "grommet";
 import { Add, Refresh } from "grommet-icons";
 
-export const FormsListHeader = ():React.ReactElement => (
+export const FormsListHeader = ( { refetch }: FormsListHeaderProps ):React.ReactElement => (
     <Box
         align="center"
         justify="between"
@@ -24,6 +24,11 @@ export const FormsListHeader = ():React.ReactElement => (
           type="button"
           reverse={true}
           primary={false}
+          onClick={() => refetch()}
         />
       </Box>
 )
+
+interface FormsListHeaderProps {
+  refetch: () => void,
+}

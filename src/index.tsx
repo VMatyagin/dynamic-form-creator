@@ -5,6 +5,7 @@ import { createBrowserHistory } from "history";
 import { App } from "./App";
 import { Auth0Provider } from "./features/common/organisms";
 import { AUTH_CONFIG } from "./features/common/auth-config";
+import { GraphQlProvider } from "./lib";
 
 const history = createBrowserHistory();
 
@@ -14,9 +15,11 @@ ReactDOM.render(
     client_id={AUTH_CONFIG.clientId}
     redirect_uri={AUTH_CONFIG.callbackUrl}
   >
-    <Router history={history}>
-      <App />
-    </Router>
+    <GraphQlProvider>
+      <Router history={history}>
+        <App />
+      </Router>
+    </GraphQlProvider>
   </Auth0Provider>,
   document.getElementById("root")
 );

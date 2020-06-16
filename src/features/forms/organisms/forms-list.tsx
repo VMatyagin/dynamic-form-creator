@@ -6,17 +6,27 @@ import {
   FormCategory,
   FormCategoryItem,
 } from "../molecules";
-import { dataType } from "../pages/home";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_ALL_FORMS } from "../queries";
+import { OrganisationsData } from "../types";
+import { Spinner } from "../../../ui/atoms";
 
-export const FormsList = ({ data }: FormsListProps) => {    
+export const FormsList = ( {setFormId}: FormsListProps ) => {    
+
+  const { data, loading, refetch } = useQuery<OrganisationsData>(GET_ALL_FORMS);
+
+  if (!data || loading) {
+    return <Spinner/>
+  }
+
   return (
     <LeftContainer>
-      <FormsListHeader />
+      <FormsListHeader refetch={refetch} />
       <FormsListContainer>
-        {data.map((item) => (
-          <FormCategory label={item.label} key={item.label}>
+        {data.organisations.map( (item) => (
+          <FormCategory label={item.name} key={item.name}>
             {item.forms.map( (subItem ) => (
-                <FormCategoryItem {...subItem} key={subItem.label}/>
+                <FormCategoryItem {...subItem} key={subItem.label} handleClick={setFormId}/>
             ))}
           </FormCategory>
         ))}
@@ -26,5 +36,5 @@ export const FormsList = ({ data }: FormsListProps) => {
 };
 
 interface FormsListProps {
-  data: dataType;
+  setFormId: (formId: number) => void
 }

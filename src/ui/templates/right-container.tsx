@@ -4,6 +4,7 @@ import { Box } from "grommet";
 
 export const RightContainer = ({children}:ChildrenInterface) => (
     <Box
+        fill
         align="center"
         justify="center"
         direction="column"
