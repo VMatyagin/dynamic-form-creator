@@ -3,6 +3,7 @@ import { Box, Button } from "grommet";
 import { Formik, Form } from "formik";
 import { CommonFormField } from "./form-field";
 import { FormsData } from "../types";
+import { Prompt } from "react-router-dom";
 
 interface InitialValuesObj {
   [key: string]: string;
@@ -26,8 +27,12 @@ export const FormEntity = ({ form_fields }: FormsData) => {
           }, 2000);
         }}
       >
-        {({ values, handleChange, isSubmitting }) => (
+        {({ values, handleChange, isSubmitting, dirty }) => (
           <Form>
+            <Prompt
+              when={dirty}
+              message={'Вы уверены, что хотите перейти и потерять данные с формы?'}
+            />
             {form_fields.map((item) => (
               <CommonFormField
                 values={values}
