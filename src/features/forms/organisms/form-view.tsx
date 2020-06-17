@@ -18,9 +18,7 @@ export const FormView = ( { currentFormId }: FormViewProps ) => {
     })
   }, [currentFormId, loadForm])
 
-  const EmptyView = () => {
-    return <span>Выберите одну из форм</span>;
-  };
+  
 
   const ViewWithData = () => (
     <>
@@ -35,7 +33,7 @@ export const FormView = ( { currentFormId }: FormViewProps ) => {
   return (
     <RightContainer>
       {!data && !loading ? (
-        <EmptyView />
+        <></>
       ) : loading ? (
         <Spinner />
       ) : (

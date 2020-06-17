@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Text } from "grommet";
 import { FormsData } from "../types";
 
-export const FormCategoryItem = ({ label, created_at, id, handleClick }:FormsData & OnClickItem) => {
+export const FormCategoryItem = ({ label, created_at, id }:FormsData) => {
   const date = new Date(created_at).toLocaleDateString()
   return (
     <Box
@@ -12,7 +12,6 @@ export const FormCategoryItem = ({ label, created_at, id, handleClick }:FormsDat
       direction="row"
       pad="small"
       hoverIndicator
-      onClick={() => handleClick(id)}
       style={{cursor: 'pointer'}}
     >
       <Text>{label}</Text>
@@ -20,7 +19,3 @@ export const FormCategoryItem = ({ label, created_at, id, handleClick }:FormsDat
     </Box>
   );
 };
-
-export interface OnClickItem {
-  handleClick: (formId: number) => void
-}

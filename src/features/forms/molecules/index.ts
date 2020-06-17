@@ -5,3 +5,4 @@ export { FormCategoryItem } from "./form-category-item"
 export { FormCategory } from "./form-category"
 export { FormsListHeader } from "./forms-list-header"
 export { FormViewHeader } from "./form-view-header"
+export { EmptyFormView } from './empty-form-view'

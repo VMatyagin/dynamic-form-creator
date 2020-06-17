@@ -8,7 +8,7 @@ export const FormsListHeader = ( { refetch }: FormsListHeaderProps ):React.React
         justify="between"
         direction="row"
         border={{ side: "bottom", color: "light-6" }}
-        pad="small"
+        pad="xsmall"
         fill="horizontal"
       >
         <Button

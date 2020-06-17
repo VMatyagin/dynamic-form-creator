@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { FormsCommonTemplate } from "../templates/common";
-import { FormsList, FormView } from "../organisms";
+import { FormsList } from "../organisms";
+import { EmptyFormView } from "../molecules";
 
 
-export const FormsHomePage = () => {
-  const [currentFormId, setFormId] = useState<number>()  
-  
+export const FormsHomePage = () => {  
   return (
   <FormsCommonTemplate>
-    <FormsList setFormId={setFormId} />
-    <FormView currentFormId={currentFormId} />
+    <FormsList />
+    <EmptyFormView />
   </FormsCommonTemplate>
 )};

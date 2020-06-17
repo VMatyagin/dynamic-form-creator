@@ -27,7 +27,7 @@ const spinning = (
 );
 
 export const Spinner = () => (
-  <Box align="center" justify="center" pad='medium'> 
+  <Box align="center" justify="center" pad='medium' fill> 
     {spinning}
   </Box>
 );
