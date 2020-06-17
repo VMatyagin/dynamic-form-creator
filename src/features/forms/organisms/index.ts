@@ -1,2 +1,2 @@
-export { FormView } from './form-view';
+export { FormViewWithData } from './form-view';
 export { FormsList } from './forms-list';

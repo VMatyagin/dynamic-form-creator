@@ -8,7 +8,7 @@ export const formRoutes = () => [
     component: FormsHomePage,
   },
   {
-    path: "/open/:cardId",
+    path: "/open/:formId",
     exact: true,
     component: FormsViewPage,
   },

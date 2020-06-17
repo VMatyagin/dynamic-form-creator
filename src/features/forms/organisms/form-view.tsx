@@ -1,48 +1,35 @@
 import React, { useEffect } from "react";
-import { RightContainer } from "../../../ui/templates";
 import { FormViewHeader, FormEntity } from "../molecules";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { GET_FORM_BY_ID } from "../queries";
 import { Spinner } from "../../../ui/atoms";
 import { FormsViewData } from "../types";
+import { useParams } from "react-router-dom";
 
-export const FormView = ( { currentFormId }: FormViewProps ) => {
+export const FormViewWithData = () => {
+  const { formId } = useParams();
+
   const [loadForm, { data, loading }] = useLazyQuery<FormsViewData>(
     GET_FORM_BY_ID
   );
+
   useEffect(() => {
     loadForm({
       variables: {
-        formId: currentFormId
-      }
-    })
-  }, [currentFormId, loadForm])
+        formId,
+      },
+    });
+  }, [loadForm, formId]);
 
-  
-
-  const ViewWithData = () => (
-    <>
-      <FormViewHeader
-        label={data!.forms[0].label}
-        creator={data!.forms[0].user.full_name}
-      />
-      <FormEntity {...data!.forms[0]} />
-    </>
-  );
+  if (loading || !data) return <Spinner />;
 
   return (
-    <RightContainer>
-      {!data && !loading ? (
-        <></>
-      ) : loading ? (
-        <Spinner />
-      ) : (
-        <ViewWithData />
-      )}
-    </RightContainer>
+    <>
+      <FormViewHeader
+        label={data.forms[0].label}
+        creator={data.forms[0].user.full_name}
+      />
+      <FormEntity {...data.forms[0]} />
+    </>
   );
 };
-
-interface FormViewProps {
-  currentFormId: number | undefined
-}
