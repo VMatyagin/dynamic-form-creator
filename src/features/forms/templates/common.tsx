@@ -5,6 +5,7 @@ import { Spinner } from "../../../ui/atoms";
 import { LeftContainer, RightContainer } from "../../../ui/templates";
 
 export const FormsCommonTemplate = ({
+  sidebar,
   children,
 }: FormsContentTemplateProps): JSX.Element => {
   const { isAuthenticated, loading } = useAuth0();
@@ -23,12 +24,13 @@ export const FormsCommonTemplate = ({
 
   return (
     <CommonContentTemplate>
-      <LeftContainer>{children[0]}</LeftContainer>
-      <RightContainer>{children[1]}</RightContainer>
+      <LeftContainer>{sidebar}</LeftContainer>
+      <RightContainer>{children}</RightContainer>
     </CommonContentTemplate>
   );
 };
 
 interface FormsContentTemplateProps {
-  children: any[];
+  sidebar: React.ReactElement;
+  children: React.ReactElement;
 }
