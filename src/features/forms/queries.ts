@@ -29,11 +29,31 @@ export const GET_FORM_BY_ID = gql`
       user {
         full_name
       }
-      created_at
       form_fields {
         id
         caption
+        element_type {
+          id
+          name
+        }
+        field_submissions(
+          order_by: { form_submission: { updated_at: desc } }
+          limit: 1
+        ) {
+          value
+        }
       }
+      created_at
+    }
+  }
+`;
+
+export const SUBMIT_FORM = gql`
+  mutation MyMutation($objects: [form_submissions_insert_input!]! = {}) {
+    insert_form_submissions(
+      objects: $objects
+    ) {
+      affected_rows
     }
   }
 `;

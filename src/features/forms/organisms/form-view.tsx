@@ -29,7 +29,7 @@ export const FormViewWithData = () => {
         label={data.forms[0].label}
         creator={data.forms[0].user.full_name}
       />
-      <FormEntity {...data.forms[0]} />
+      <FormEntity {...data.forms[0]} form_id={formId} />
     </>
   );
 };

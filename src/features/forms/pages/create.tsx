@@ -1,11 +1,11 @@
 import React from "react";
-import { CommonContentTemplate } from "../../common/templates/common-contets";
+import { FormsCommonTemplate } from "../templates/common";
+import { CreateSidebar } from "../molecules";
 
-
-export const FormsCreateage = () => {
+export const FormsCreatePage = () => {
   return (
-    <CommonContentTemplate>
-        <>sad</>
-    </CommonContentTemplate>
+    <FormsCommonTemplate sidebar={<CreateSidebar />}>
+      <>sdgsd</>
+    </FormsCommonTemplate>
   );
 };

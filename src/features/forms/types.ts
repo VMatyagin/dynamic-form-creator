@@ -3,9 +3,15 @@ export interface User {
   full_name: string;
 }
 
-interface FormFields {
+interface FieldSubmittion {
+  id: number;
+  value: string;
+}
+
+export interface FormFields {
   id: number;
   caption: string;
+  field_submissions: FieldSubmittion[]
 };
 
 export interface FormsData {

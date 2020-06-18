@@ -22,5 +22,5 @@ export const CommonContentTemplate = ({ children }: CommonContentTemplateProps):
 )
 
 interface CommonContentTemplateProps {
-    children: React.ReactNode,
+    children: React.ReactNode
 }
