@@ -8,11 +8,29 @@ interface FieldSubmittion {
   value: string;
 }
 
+export interface FieldType {
+  id: number;
+  label: string;
+  type: string;
+}
+
+export interface FieldTypeData {
+  element_types: FieldType[];
+}
+
 export interface FormFields {
   id: number;
   caption: string;
-  field_submissions: FieldSubmittion[]
-};
+  required: boolean;
+  field_submissions: FieldSubmittion[];
+}
+
+export interface FormCreateField {
+  order: number;
+  input_value: string;
+  required_value: boolean;
+  element_type_id: number;
+}
 
 export interface FormsData {
   id: number;
@@ -25,6 +43,7 @@ export interface FormsData {
 interface Organisations {
   id: number;
   name: string;
+  full_name: string;
   forms: FormsData[];
 }
 
@@ -33,5 +52,9 @@ export interface OrganisationsData {
 }
 
 export interface FormsViewData {
-    forms: FormsData[];
+  forms: FormsData[];
+}
+
+export interface InitialValuesObj {
+  [key: string]: string | number;
 }

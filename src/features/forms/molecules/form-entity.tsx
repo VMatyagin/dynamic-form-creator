@@ -2,49 +2,41 @@ import React from "react";
 import { Box, Button } from "grommet";
 import { Formik, Form } from "formik";
 import { CommonFormField } from "./form-field";
-import { FormFields } from "../types";
+import { FormFields, InitialValuesObj } from "../types";
 import { Prompt } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import { SUBMIT_FORM } from "../queries";
 
-interface InitialValuesObj {
-  [key: string]: string | number;
-}
-
-export const FormEntity = ({ form_fields, form_id }:FormEntityProps) => {
-
+export const FormEntity = ({ form_fields, form_id }: FormEntityProps) => {
   const initialValues = form_fields.reduce((acc: InitialValuesObj, item) => {
-    acc[item.caption] = item.field_submissions[0]
-      ? item.field_submissions[0].value
+    acc[item.caption] = item.field_submissions![0]
+      ? item.field_submissions![0].value
       : "";
-
 
     return acc;
   }, {});
 
-  const [submitForm, { error }] = useMutation(SUBMIT_FORM);
+  const [submitForm, { error, loading }] = useMutation(SUBMIT_FORM);
 
   console.log(error);
 
   const do1 = (values: InitialValuesObj) => {
-    let data:InitialValuesObj[] = []
-    form_fields.forEach( (item) => {
-      data.push(
-        {
-          form_element_id: item.id,
-          value: values[item.caption]
-        }
-      )
-    })
-    return data
-  }
+    let data: InitialValuesObj[] = [];
+    form_fields.forEach((item) => {
+      data.push({
+        form_element_id: item.id,
+        value: values[item.caption],
+      });
+    });
+    return data;
+  };
 
   return (
     <Box pad="xsmall" fill>
       <Formik
         enableReinitialize
         initialValues={initialValues}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values) => {
           submitForm({
             variables: {
               objects: {
@@ -55,14 +47,9 @@ export const FormEntity = ({ form_fields, form_id }:FormEntityProps) => {
               },
             },
           });
-
-          setSubmitting(true);
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 2000);
         }}
       >
-        {({ values, handleChange, isSubmitting, dirty }) => (
+        {({ values, handleChange, dirty }) => (
           <Form>
             <Prompt
               when={dirty}
@@ -70,7 +57,6 @@ export const FormEntity = ({ form_fields, form_id }:FormEntityProps) => {
                 "Вы уверены, что хотите перейти и потерять данные с формы?"
               }
             />
-            {console.log(values)}
             {form_fields.map((item) => (
               <CommonFormField
                 value={values[item.caption]}
@@ -82,12 +68,12 @@ export const FormEntity = ({ form_fields, form_id }:FormEntityProps) => {
             ))}
 
             <Box align="center" justify="center" direction="row" gap="xsmall">
-              <Button label="Сброс" type="reset" />
+              <Button label="Сброс" type="reset" disabled={loading} />
               <Button
                 label="Отправить"
                 primary={true}
                 type="submit"
-                disabled={isSubmitting}
+                disabled={loading}
               />
             </Box>
           </Form>
@@ -97,8 +83,7 @@ export const FormEntity = ({ form_fields, form_id }:FormEntityProps) => {
   );
 };
 
-
 interface FormEntityProps {
-  form_fields: FormFields[],
-  form_id: number,
+  form_fields: FormFields[];
+  form_id: number;
 }

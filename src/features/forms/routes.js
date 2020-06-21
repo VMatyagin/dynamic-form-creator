@@ -15,6 +15,12 @@ export const formRoutes = () => [
   },
   {
     path: "/create/",
+    exact: true,
+    component: FormsCreatePage,
+  },
+  {
+    path: "/create/:formId",
+    exact: true,
     component: FormsCreatePage,
   },
 ]

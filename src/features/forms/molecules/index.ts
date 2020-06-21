@@ -8,3 +8,4 @@ export { FormViewHeader } from "./form-view-header"
 export { EmptyFormView } from './empty-form-view'
 export { CreateHeader } from './form-create-header'
 export { CreateSidebar } from './create-form-sidebar'
+export { FormCreateCard } from './form-create-card'

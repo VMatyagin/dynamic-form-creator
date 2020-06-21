@@ -9,7 +9,8 @@ export const RightContainer = ({children}:ChildrenInterface) => (
         justify="center"
         direction="column"
         basis="3/4"
-        margin="small"
+        pad="small"
+        overflow='auto'
     >
         {children}
     </Box>
