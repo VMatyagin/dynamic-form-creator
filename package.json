@@ -15,7 +15,7 @@
     "apollo-boost": "^0.4.9",
     "formik": "^2.1.4",
     "graphql": "^15.1.0",
-    "grommet": "^2.13.0",
+    "grommet": "https://github.com/grommet/grommet/tarball/stable",
     "grommet-icons": "^4.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
