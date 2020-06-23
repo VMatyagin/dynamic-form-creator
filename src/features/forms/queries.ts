@@ -90,3 +90,37 @@ export const CREATE_FORM = gql`
     }
   }
 `;
+
+export const UPSERT_FORM_FIELDS = gql`
+  mutation MyMutation(
+    $objects: [form_elements_insert_input!]! = {
+      caption: ""
+      element_type_id: 10
+      form_id: 10
+      is_deleted: false
+    }
+  ) {
+    insert_form_elements(
+      on_conflict: {
+        constraint: form_elements_pkey
+        update_columns: [caption, element_type_id]
+      }
+      objects: $objects
+    ) {
+      affected_rows
+    }
+  }
+`;
+
+export const CREATE_GET_FORM_BY_ID = gql`
+  query MyQuery($formId: Int!) {
+    forms(where: { id: { _eq: $formId } }) {
+      label
+      visible
+      organisation {
+        full_name
+        id
+      }
+    }
+  }
+`;

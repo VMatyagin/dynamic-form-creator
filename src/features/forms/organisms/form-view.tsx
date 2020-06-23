@@ -28,6 +28,7 @@ export const FormViewWithData = () => {
       <FormViewHeader
         label={data.forms[0].label}
         creator={data.forms[0].user.full_name}
+        form_id={formId}
       />
       <FormEntity {...data.forms[0]} form_id={formId} />
     </>

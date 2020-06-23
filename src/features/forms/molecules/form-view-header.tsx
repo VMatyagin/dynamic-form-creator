@@ -1,8 +1,17 @@
 import React from "react";
 import { Box, Button, Text, Heading } from "grommet";
 import { Edit } from "grommet-icons";
+import { useHistory } from "react-router-dom";
 
-export const FormViewHeader = ({ label, creator }: FormViewHeaderProps) => {
+export const FormViewHeader = ({
+  label,
+  creator,
+  form_id,
+}: FormViewHeaderProps) => {
+  const history = useHistory();
+
+  const handleEditClick = () => history.push(`/create/${form_id}`);
+
   return (
     <>
       <Box align="center" justify="between" direction="row" fill="horizontal">
@@ -18,6 +27,7 @@ export const FormViewHeader = ({ label, creator }: FormViewHeaderProps) => {
             type="button"
             primary={false}
             reverse={true}
+            onClick={handleEditClick}
           />
         </Box>
       </Box>
@@ -31,4 +41,5 @@ export const FormViewHeader = ({ label, creator }: FormViewHeaderProps) => {
 interface FormViewHeaderProps {
   label: string;
   creator: string;
+  form_id: string;
 }

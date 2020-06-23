@@ -22,21 +22,32 @@ export interface FormFields {
   id: number;
   caption: string;
   required: boolean;
+  extra_fields: {
+    id: number
+    value: string
+  }
   field_submissions: FieldSubmittion[];
 }
 
 export interface FormCreateField {
   order: number;
-  input_value: string;
-  required_value: boolean;
-  element_type_id: number;
+  caption: string;
+  required: boolean;
+  element_type: FieldType;
+  extra_fields: string[]
+}
+
+export interface FormInitData {
+  fields: FormCreateField[]
 }
 
 export interface FormsData {
   id: number;
   created_at: string;
   label: string;
+  visible: boolean;
   user: User;
+  organisation: Organisations
   form_fields: FormFields[];
 }
 
